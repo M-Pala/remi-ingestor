@@ -145,8 +145,14 @@ async function main(): Promise<void> {
   });
   await sleep(300);
 
-  assert(dup1.status === "duplicate", "first duplicate should return duplicate");
-  assert(dup2.status === "duplicate", "second duplicate should return duplicate");
+  assert(
+    dup1.status === "duplicate",
+    "first duplicate should return duplicate",
+  );
+  assert(
+    dup2.status === "duplicate",
+    "second duplicate should return duplicate",
+  );
 
   stats = await getStats();
   assert(
@@ -196,7 +202,8 @@ async function main(): Promise<void> {
     Body: "Here is a photo of the damage",
     Participants: "+15550001,+15550002,+15559999",
     NumMedia: "1",
-    MediaUrl0: "mock://image-damage.jpg",
+    MediaUrl0:
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Malabar_pied_hornbill_%28Anthracoceros_coronatus%29_female_in_flight.jpg/1920px-Malabar_pied_hornbill_%28Anthracoceros_coronatus%29_female_in_flight.jpg",
     MediaContentType0: "image/jpeg",
   });
   assert(media.status === "accepted", "media message should be accepted");
@@ -234,7 +241,8 @@ async function main(): Promise<void> {
     "SM999 should succeed after retry, not fail permanently",
   );
   assert(
-    statsAfterRetry.messagesProcessed === statsBeforeRetry.messagesProcessed + 1,
+    statsAfterRetry.messagesProcessed ===
+      statsBeforeRetry.messagesProcessed + 1,
     "SM999 should add exactly one processed message after retry",
   );
 
